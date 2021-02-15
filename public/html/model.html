@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <head>
+        <title>Model Parameters</title>
+        <!--Open Sans from Google fonts-->
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+        <link href="../css/model.css" rel="stylesheet">
+        
+    </head>
+    <body id="main">
+        <div style="height: 1000px;width: 50%; margin:0 auto;">
+            <div class="testbox">
+                <form action="/" id="submit-to-google-sheet">
+                    <h1> Model Parameters</h1>
+                    <div>
+                        <h4>What percentage of students will attend classes in person ?</h4>
+                        <div class="question-answer">
+                            <label><input type="radio" value="100" name="class_size"/>100 %</label>
+                            <!-- <label><input type="radio" value="75" name="class_size"/>75 %</label> -->
+                            <label><input type="radio" value="50" name="class_size"/>50 %</label>
+                            <!-- <label><input type="radio" value="25" name="class_size">25 %</label> -->
+                        </div>
+                    </div>
+                    <div>
+                        <h4>Will students be having lunch in class ?</h4>
+                        <div class="question-answer">
+                            <label><input type="radio"  value = "Yes" name="lunch" />Yes</label>
+                            <label><input type="radio"  value = "No" name="lunch" />No [cafeteria]</label>
+                        </div>
+                    </div>
+                    <div>
+                        <h4> Please choose an estimate for the amount of students properly wearing masks.</h4>
+                        <div class="question-answer">
+                            <!-- <label><input type="radio"  value = "0" name="masks" /> 0 %</label> -->
+                            <label><input type="radio"  value = "25" name="masks" /> 25 % </label>
+                            <label><input type="radio"  value = "50" name="masks" /> 50 %</label>
+                            <label><input type="radio"  value = "75" name="masks" /> 75 % </label>
+                            <label><input type="radio"  value = "100" name="masks" />100 %</label>    
+                        </div>
+                    </div>
+
+                    <!-- <div style="margin: 30px 0 10px;">
+                        <h4>What are some parameters that you would like us to simulate in the future?</h4>
+                        <input type="text" id="fname" name="future_params" size="50"><br>
+                    </div> -->
+
+                    <!-- <div class="btn-block">
+                        <button type="submit" href="/" id="submit-form">Simulate</button>
+                    </div> -->
+
+                    <div class="btn-group" role="group" aria-label="Basic example" style="padding-top: 20px;">              
+                        <button type="submit" class="btn btn-secondary" href="/" id="submit-form">Simulate</button>
+                      </div>
+
+                </form>
+            </div>
+        </div>
+
+        <!-- Scripts for syncing Google sheet with information -->
+        <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyLXQVIFgMDjY-MEojYg4024ogQ4eSRYkw7aUbqhNyfkWTu6wg/exec'
+            const form = document.forms['submit-to-google-sheet']
+            const btnsubmit = document.getElementById('submit-form');
+
+            btnsubmit.addEventListener('click', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => console.log('Success!', response))
+                .catch(error => console.error('Error!', error.message))
+            
+                var bdy = document.getElementById('main');
+                var frm = document.forms['submit-to-google-sheet'];
+
+                var cls_size = document.getElementsByName('class_size');
+                var mask_size = document.getElementsByName('masks');
+                var lunch_btns = document.getElementsByName('lunch');
+
+                var cls_param = "";
+                var mask_param = "";
+                var lunch_param = "";
+
+                for (var i = 0; i < 2; i++) {
+                    radio_cls = cls_size[i];
+                    if (radio_cls.checked) {
+                        if (i == 0) {cls_param="100";};
+                        if (i == 1) {cls_param="50";};
+                        // if (i == 0) {cls_param="100";};
+                        // if (i == 1) {cls_param="75";};
+                        // if (i == 2) {cls_param="50";};
+                        // if (i == 3) {cls_param="25";};
+                    };
+                   
+                };
+
+
+                for (var i = 0; i < 2; i++) {
+                    radio_lunch = lunch_btns[i];
+                    if (radio_lunch.checked) {
+                        if (i == 0) {lunch_param="Yes";};
+                        if (i == 1) {lunch_param="No";};
+                    };   
+                };
+
+
+                for (var i = 0; i < 4; i++) {
+                    radio_masks = mask_size[i];
+                    if (radio_masks.checked) {
+                        if (i == 0) {mask_param="25";};
+                        if (i == 1) {mask_param="50";};
+                        if (i == 2) {mask_param="75";};
+                        if (i == 3) {mask_param="100";};
+
+                        // if (i == 0) {mask_param="0";};
+                        // if (i == 1) {mask_param="25";};
+                        // if (i == 2) {mask_param="50";};
+                        // if (i == 3) {mask_param="75";};
+                        // if (i == 4) {mask_param="100";};
+                    };
+                };
+
+                sessionStorage.cls_param = cls_param;
+                sessionStorage.lunch_param = lunch_param;
+                sessionStorage.mask_param = mask_param;
+
+                frm.style.opacity  = 0;
+                //bdy.innerHTML += '<video autoplay muted class="backgroundVideo"> <source src= "../img/Simulation-1.mp4#t=10,20"> </video>';
+                bdy.innerHTML += '<div id="loader"> </div>'
+
+                setTimeout('window.location = "./dashboard.html";', 15000);
+
+            });
+        </script>
+    <!-- Background Javascripts-->
+    <script src="../js/three.r119.min.js"></script>
+    <script src="../js/vanta.dots.min.js"></script>
+    <script src="../js/background.js"></script>
+    </body>
+</html>

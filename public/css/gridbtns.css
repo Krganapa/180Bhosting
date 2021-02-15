@@ -1,0 +1,12 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 12px 31%;
+  grid-template-areas:
+    "submitbtn simulatebtn";
+}
+
+.submitbtn { grid-area: submitbtn; }
+
+.simulatebtn { grid-area: simulatebtn; }

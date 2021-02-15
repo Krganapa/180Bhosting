@@ -1,0 +1,28 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1.7fr 1.1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: "sdsc_logo title title emptyspace3" "emptyspace2 title title emptyspace3" "emptyspace2 video video outcome_title" "emptyspace2 video video outcomes" "class_size video video outcomes" "masks video video outcomes" "lunch video video outcomes" "emptyspace1 video video outcomes" "emptyspace1 video video outcomes";
+}
+
+.video { grid-area: video; }
+
+.class_size { grid-area: class_size; }
+
+.masks { grid-area: masks; }
+
+.lunch { grid-area: lunch; }
+
+.title { grid-area: title; }
+
+.outcome_title { grid-area: outcome_title; }
+
+.outcomes { grid-area: outcomes; }
+
+.sdsc_logo { grid-area: sdsc_logo; }
+
+.emptyspace1 { grid-area: emptyspace1; }
+
+.emptyspace2 { grid-area: emptyspace2; }
+
+.emptyspace3 { grid-area: emptyspace3; }

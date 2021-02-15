@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>About this Model</title>
+        <!--Open Sans from Google fonts-->
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+        <link href="../css/model.css" rel="stylesheet">
+        
+    </head>
+    <body id="main">
+        <div style="height: 1000px;width: 50%; margin:0 auto;">
+            <div class="testbox">
+                <form action="/" id="submit-to-google-sheet">
+                    <h1> Model Parameters</h1>
+                    <div>
+                        <h4>What percentage of students will attend classes in person?</h4>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>Will students be having lunch in class ?</h4>
+                    </div>
+                    <div>
+                        <h4> Choose an estimate for the amount of students wearing masks</h4>
+                    </div>
+
+                    <div class="btn-group" role="group" aria-label="Basic example" style="padding-top: 20px;">              
+                        <button type="submit" class="btn btn-secondary" href="/" id="proceed">Proceed</button>
+                      </div>
+
+                </form>
+            </div>
+        </div>
+        <script>
+            const btnsubmit = document.getElementById('submit-form');
+
+            btnsubmit.addEventListener('click', e => {
+              e.preventDefault()});
+        </script>
+    <!-- Background Javascripts-->
+    <script src="../js/three.r119.min.js"></script>
+    <script src="../js/vanta.dots.min.js"></script>
+    <script src="../js/background.js"></script>
+    </body>
+</html>

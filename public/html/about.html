@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>About this Model</title>
+        <!--Open Sans from Google fonts-->
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+        <link href="../css/model.css" rel="stylesheet">
+        
+    </head>
+    <body id="main">
+        <div style="height: 70%;width: 70%; margin:0 auto;">
+            <div class="testbox">
+                <form>
+
+               
+                <h1> About this model </h1>
+                <ol>
+                     
+                    <li> This model is a <b>work in progress</b>. Model parameters and assumptions are continuously reviewed and revised based on published research.</li>
+                    <li> All simulation runs for this model have been <b>pre-computed</b> because it takes 45-60 mins to run a single model scenario.</li>
+                    <li> The results from this model depend on the <b>assumptions</b> listed below; they <b>may or may not</b> apply to your school.</li>
+                    <li> This model version is implemented over one sample school layout. If you want to run simulations for your school layout and your specific reopening plans, enter suggestions or otherwise get in touch. </li>
+                </ol>
+                <div>
+                    <h4> <b> Model Information and Assumptions</b></h4>
+                    <ol>
+                    <li>This spatially-explicit agent-based model simulates random movements of students and teachers under the confines of specific activities (learning at desks, group activities, recess, lunch) and school spaces (classrooms, recess yard, lunch cafeteria).</li>
+                    <li> We simulate interactions between students, and teachers in a typical elementary school (K/Pre-K + 1-5) over a <b> 15 day period, in 5-minute intervals. </b> </li>
+                    <li>We introduce <b>3 asymptomatic </b>COVID positive individuals at Day 1 of the simulation.</li>
+                    <li> Students become exposed when spending <b>10 minutes or more</b> at a <b></n>distance of 3ft</b>. or less with a infectious individual.</li>
+                    <li> Students in class and are placed in individual desks which are <b>6 feet</b> apart.</li>
+                    <li>Students also engage in <b>group activities</b> during class-time during which they may come into close proximity with the teacher and other classmates (less than 6 ft).</li>
+                    <li>During recess, children from grades 1-5 spend time interacting with friends in a <b>main recess yard.</b></li>
+                    <li> During recess, children from K/Pre-K spend time interacting with friends in a separate <b>small recess yard.</b></li></li>
+                    <li>When students from grades 1-5 eat lunch in the cafeteria they do so <b>at the same time</b>. They also spend 10 minutes picking food to eat in the cafeteria.</b> <font color = 'red'> This results in cross-class exposure. </font> </li>
+                    <li>Students from K/Pre-K <b>eat lunch in class.</b></li>
+                    <li>Students stop coming to class once COVID-19 symptoms are detected.</b></li>
+                    <li>Accumulated viral load in the classroom is modeled, but <b>is not</b> a transmission factor in the current version.</li>
+
+                </ol>
+                </div>
+
+                <div>
+                    <h4> <b> User Adjustable Parameters</b></h4>
+                    <ol>
+                        <li>
+                            <b>In class attendance (in %)</b>: The percentage of students attending <b>classes in-person</b>. 
+                        </li>
+
+                        <li>
+                            <b>Lunch location</b>: Whether the students will have lunch in the cafeteria or directly in class  (lunch will be delivered to classrooms).
+                        </li>
+
+                        <li><b>Proportion wearing masks (in %)</b>: Self-explanatory. <b><font color='red'><br>IMPORTANT:</b> Students are assumed to remove masks for the entire duration of lunch irrespective of location, which greatly affects transmission rates.</font></li>
+
+                    </ol>
+                </div>
+
+                <div> <h4> <b> To know more about the model, <a href = '../img/assumptions.pdf' download> click here! </a> </b></h4> </div>
+                <div> <h4> <b id = 'message'> Please click </b></h4> </div>
+                
+                <button type="button" class="btn-outline-mdb-color btn-lg waves-effect hvr-radial-out " style="margin: auto; margin-top:20px;" id = "proceed"> Proceed </button>
+                <script>
+                    var btn = document.getElementById('proceed');
+                    var message = document.getElementById('message');
+
+                    if (sessionStorage.nxtpage == 'simulate') {btn.innerHTML = "Run the Model"; message.innerHTML += "run the model to choose parameters for a simulation, and click have feedback on the model results page if you want us to simulate your school's floor plans and reopening scenarios, or otherwise get in touch. "};
+                    if (sessionStorage.nxtpage == 'feedback') {btn.innerHTML = "Provide Feedback"; message.innerHTML += "provide feedback if you want us to simulate your school's floor plans and reopening scenarios, or otherwise get in touch. "};
+                </script>
+
+            </div>
+                
+            </div>
+
+        
+        </form>
+        </div>
+        <script>
+            const btnsubmit = document.getElementById('proceed');
+
+            btnsubmit.addEventListener('click', e => {
+              e.preventDefault()
+              if (sessionStorage.nxtpage == 'simulate') {
+                  window.location='./model.html';
+              }
+              if (sessionStorage.nxtpage == 'feedback') {
+                window.location='./suggestions.html';
+              }
+            
+            });
+        </script>
+    <!-- Background Javascripts-->
+    <script src="../js/three.r119.min.js"></script>
+    <script src="../js/vanta.dots.min.js"></script>
+    <script src="../js/background.js"></script>
+    </body>
+</html>
